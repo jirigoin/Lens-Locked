@@ -1,0 +1,16 @@
+<h1>Hello {{.Name}} your dogs are {{.Dog}}. Your favorite number is: {{.Number}}</h1>
+
+<p>
+    {{range .Slice}}
+        {{.}}
+    {{end}}
+</p>
+
+<pre>
+    {{.Map}}
+</pre>
+
+<script>
+    let m ={{.Map}}
+
+</script>

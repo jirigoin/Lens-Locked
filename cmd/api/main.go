@@ -2,9 +2,8 @@ package main
 
 import (
 	"fmt"
-	"net/http"
-
 	"lenslocked/views"
+	"net/http"
 
 	"github.com/gorilla/mux"
 )

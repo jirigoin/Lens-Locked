@@ -1,4 +1,4 @@
-module lenslocked
+module github.com/jrigoin/lenslocked
 
 go 1.17
 

@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"lenslocked/views"
 	"net/http"
+
+	"github.com/gorilla/schema"
 )
 
 // NewUsers is used to create a new Users controller.
@@ -23,6 +25,22 @@ func (u *Users) New(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+type SignupForm struct {
+	Email    string `schema:"email"`
+	Password string `schema:"password"`
+}
+
 func (u *Users) Create(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "This is a temporary response.")
+	if err := r.ParseForm(); err != nil {
+		panic(err)
+	}
+	// r.PostForm = map[string][]string  -> with standard library
+	// fmt.Fprintln(w, r.PostForm["password"])
+	// fmt.Fprintln(w, r.PostForm["email"])
+	dec := schema.NewDecoder()
+	var form SignupForm
+	if err := dec.Decode(&form, r.PostForm); err != nil {
+		panic(err)
+	}
+	fmt.Fprintln(w, form)
 }
